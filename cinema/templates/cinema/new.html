@@ -1,0 +1,75 @@
+{% extends 'reservation/base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'cinema/css/new.css' %}">
+{% endblock %}
+
+{% block title %}
+<title>Réservation | News</title>
+{% endblock %}
+
+{% block content %}
+    <section class="section1">
+        
+        <div class="card">
+
+            <img src="{% static 'cinema/images/nav2.jpg' %}" alt="">
+            <div class="textes" >
+                <h2>
+                    Bienvenue sur <span>TicketBooking</span> 
+                    votre site de reservation de billet de cinéma
+
+                </h2>
+            
+                <h4>
+                    ici vous trouverez des films inédit (jamais diffusés)
+                    et surtout aux prix imbatables
+                </h4>
+                
+            </div>
+
+            <div class="recherche">
+                <input type="search" name="" id="searchs" placeholder="recherchez vous films">
+                <img src="{% static 'cinema/images/recherches.jpg' %}" alt="">
+            </div>
+        </div>
+
+        <div class="categorie">
+        {% for categorie in categorie %}
+        <a href="">{{ categorie.libelle }}</a>
+        {% endfor %}
+        
+    </div>
+    <div class="films">
+        {% for films in films %}
+        <div class="elment1">
+            
+            <div class="imag1">
+                
+                <img src="{{ films.image.url }}" alt="" >
+                <div class="texts">
+                    <div class="titre">
+                        <h4>{{ films.titre }}</h4>
+                    </div>
+                    <div class="prix">
+                        <p>{{ films.prix }}£</p>
+                    </div>
+                    
+                </div>
+            </div>
+                    
+            <div class="panier">
+                <button>+1panier</button>
+            </div>
+
+            <div class="detail">
+                <a href="{{ detail }}" >Voir la fiche>></a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+
+    </section>
+{% endblock %}

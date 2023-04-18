@@ -1,0 +1,141 @@
+{% extends 'reservation/base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'cinema/css/detail.css' %}">
+{% endblock %}
+
+{% block title %}
+<title>Réservation | {{film.titre}} </title>
+{% endblock %}
+{% block content %}
+
+<div class="imgDetail" style="margin-top: 40px;">
+    <div class="arriere"></div>
+
+    <div class="elment1">
+        <div class="imag1">
+            <img src="{{ film.image.url }}" alt="{{film.titre}}">
+            <div class="texts">
+                <div class="titre">
+                    <h4>{{film.titre}}</h4>
+                </div>
+                <div class="prix">
+                    <p>{{film.prix}}£</p>
+                </div>
+
+            </div>
+            <div class="version">
+                <p>{{film.version}}</p>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="informations">
+        <div class="description">
+            <p><span>Horaire de diffusion: </span> {{ film.horaire_diff.date }} </p>
+            <p><span>Salle de diffusion : </span>numerique</p>
+            <p> <span>lundi/ mercredi/ samedi/: </span> {{ film.horaire_diff.time }} </p>
+            <p> <span>mardi/ jeudi/ dimanche/: </span> {{ film.horaire_diff.time }} </p>
+        </div>
+        <div class="reserver">
+            <button onclick="boite()">Reserver</button>
+        </div>
+        </dialog>
+        <div id="boite">
+            <div>
+                <h4>Choisir le jour</h4>
+                <select name="jour" id="selection">
+                    <option value="lundi">Lundi</option>
+                    <option value="mardi">Mardi</option>
+                    <option value="mercredi">Mercredi</option>
+                    <option value="jeudi">Jeudi</option>
+                    <option value="vendredi">Vendredi</option>
+                    <option value="samedi">Samedi</option>
+                    <option value="dimanche">Dimanche</option>
+                </select>
+                <h4>Choisir le nombre de place</h4>
+                <input type="number" name="" id="nombre">
+                <button onclick="soumettre(event)">Valider le reservation</button>
+            </div>
+        </div>
+
+        </dialog>
+
+    </div>
+</div>
+
+</div>
+
+<div>
+
+    <div class="description">
+        <h3>Description</h3>
+        <p>c'est l'histoire de gulain et sa femme verone qui quittent leur contré pour un
+            autre pays lors des vacances d'été.c'est l'histoire de gulain et sa femme verone qui quittent leur contré
+            pour un
+            autre pays lors des vacances d'été.
+        </p>
+    </div>
+
+    <div class="infos">
+        <h3>Information sur le films</h3>
+        <p><span>Réalisé par :</span> kyle Marvin</p>
+        <p><span>Genre :</span>comédie</p>
+        <p><span>qualité : </span>numerique</p>
+
+    </div>
+
+    <div class="films">
+      <H1>Films similaire</H1>
+        {% for films in films %}
+        <div class="elment1">
+    
+            <div class="imag1">
+    
+                <img src="{{ films.image.url }}" alt="">
+                <div class="texts">
+                    <div class="titre">
+                        <h4>{{ films.titre }}</h4>
+                    </div>
+                    <div class="prix">
+                        <p>{{ films.prix }}£</p>
+                    </div>
+    
+                </div>
+            </div>
+    
+            <div class="panier">
+                <button>+1panier</button>
+            </div>
+    
+            <div class="detail">
+                <a href="{{ detail }}">Voir la fiche>></a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+</div>
+<script>
+    function boite(event) {
+        reservation = document.getElementById("boite");
+        reservation.style.visibility = reservation.style.visibility == "visible" ? "hidden" : "visible"
+
+    }
+
+    function soumettre(event) {
+        let selection = document.querySelector("#selection")
+        let nombre = document.querySelector("#nombre")
+        if (nombre.value == "" || nombre.value <= 0) {
+            alert("entrer un nombre positif")
+        }
+
+        reservation = document.getElementById("boite");
+        reservation.style.visibility = reservation.style.visibility == "visible" ? "hidden" : "visible"
+    }
+</script>
+{% endblock %}

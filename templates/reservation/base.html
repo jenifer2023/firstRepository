@@ -1,0 +1,38 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=!, initial-scale=1.0">
+    {% block css %}
+    {% endblock %}
+    {% block title %}
+    {% endblock %}
+</head>
+<body>
+    <section class="section1">
+        <div class="alle">
+            <div>
+                <h1>Ticket<span>Booking</span></h1>
+            </div>
+            <div class="liens">
+                <a href="{% url 'cinema:index' %}">Home</a>
+                <a href="{% url 'cinema:films' %}">Films</a>
+                <a href="{% url 'cinema:films' %}">Tickets</a>
+                <a href="{% url 'cinema:news' %}">News</a>
+                <a href="{% url 'cinema:reservations' %}">Reservations</a>
+            </div>
+        </div>
+
+        {% block content %}
+        {% endblock %}
+
+        <div style="margin-top: 30px; color: white; font-size: 22px; padding: 30px;">
+            <p style="text-align: center;">Votre site de reservation de billet de cinema en ligne</p>
+        </div>
+</body>
+
+</html>
